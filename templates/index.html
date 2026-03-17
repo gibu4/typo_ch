@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой личный сайт</title>
+    <!-- Font Awesome для иконок (версия 6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0 40px;
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            object-fit: cover;
+            /* Замени src на путь к твоему фото */
+            background: #fff url('https://via.placeholder.com/150') no-repeat center; /* временная заглушка */
+            background-size: cover;
+        }
+
+        /* Если у тебя есть фото, раскомментируй строку ниже и укажи свой путь */
+        /*.avatar { background-image: url('my-photo.jpg'); }*/
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Разделы */
+        section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #444;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #667eea;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Карточки "О себе" */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Навыки */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Проекты / Опыт */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            height: 180px;
+            background: #ddd url('https://via.placeholder.com/300x180') no-repeat center;
+            background-size: cover;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .project-info p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Контакты */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 40px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            color: #667eea;
+        }
+
+        .contact-item span {
+            font-size: 1rem;
+        }
+
+        .contact-item a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #667eea;
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #fff;
+            color: #666;
+            border-top: 1px solid #eaeaea;
+            margin-top: 20px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .tagline { font-size: 1rem; }
+            .contact-links { flex-direction: column; align-items: center; }
+            .contact-item { width: 100%; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Здесь замени src картинки или background-image в CSS -->
+            <div class="avatar" style="background-image: url('https://via.placeholder.com/150');"></div>
+            <h1>A. L.</h1> <!-- Замени на своё имя -->
+            <p class="tagline">Ну я</p> <!-- Напиши свою специализацию -->
+        </div>
+    </header>
+
+    <main>
+        <!-- Раздел "Обо мне" -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Обо мне</h2>
+                <div class="about-content">
+                    <p>
+                        Хз чем я занимаюсь вообще
+                    </p>
+                    <!-- Замени текст выше на свой -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел "Навыки" -->
+        <section style="background-color: #fff;">
+            <div class="container">
+                <h2 class="section-title">Ч</h2>
+                <div class="skills-grid">
+                    <!-- Каждую карточку можно заменить/дополнить -->
+                    <div class="skill-card">
+                        <i class="fab fa-html5"></i>
+                        <h3>Python</h3>
+                        <p>я типо мистер робот.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt"></i>
+                        <h3>Смотрю меллстройнось</h3>
+                        <p>Ну тупо я.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js"></i>
+                        <h3>Я мыть).</h3>
+                        <p>ну вы поняли я типо в мытищах.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-react"></i>
+                        <h3>не пишите мне.</h3>
+                        <p>ч иду спать я устал уже.</p>
+                    </div>
+                    <!-- Добавь свои навыки, скопировав блок .skill-card -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел "Проекты / Опыт" -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Мои работы</h2>
+                <div class="projects-grid">
+                    <!-- Пример проекта 1 -->
+                    <div class="project-item">
+                        <div class="project-img" style="background-image: url('https://via.placeholder.com/300x180');"></div>
+                        <div class="project-info">
+                            <h3>Ну я крутой вообще реально</h3>
+                            <p>Печенька прийдет к тебе)</p>
+                            <a href="#" class="project-link" target="_blank">Посмотреть →</a>
+                        </div>
+                    </div>
+                    <!-- Пример проекта 2 -->
+                    <div class="project-item">
+                        <div class="project-img" style="background-image: url('https://via.placeholder.com/300x180');"></div>
+                        <div class="project-info">
+                            <h3>Скоро ОГЭ(((</h3>
+                            <p>Что делать(</p>
+                            <a href="#" class="project-link" target="_blank">Посмотреть →</a>
+                        </div>
+                    </div>
+                    <!-- Пример проекта 3 -->
+                    <div class="project-item">
+                        <div class="project-img" style="background-image: url('https://via.placeholder.com/300x180');"></div>
+                        <div class="project-info">
+                            <h3>тупо ч чист ч.</h3>
+                            <p>45-летний грязный ч.</p>
+                            <a href="#" class="project-link" target="_blank">Посмотреть →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Подсказка: чтобы добавить больше проектов, скопируй блок .project-item -->
+            </div>
+        </section>
+
+        <!-- Раздел "Контакты" -->
+        <section style="background-color: #fff;">
+            <div class="container">
+                <h2 class="section-title">хз вот типо тг</h2>
+                <div class="contact-links">
+                    <!-- Каждый контакт — это ссылка с иконкой. Замени href и текст на свои. -->
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="gmail:artlev788@gmail.com">artlev788@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-telegram"></i>
+                        <a href="https://t.me/kendkd" target="_blank">@kendkd</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/gibu4" target="_blank">github.com/gibu4</a>
+                    <!-- Добавь другие соцсети: instagram, facebook, vk, etc. -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; мб права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
